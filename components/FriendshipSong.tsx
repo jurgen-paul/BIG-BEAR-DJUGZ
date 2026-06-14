@@ -185,77 +185,89 @@ export const FriendshipSong: React.FC = () => {
   }, []);
 
   return (
-    <div id="friendship-song-container" className="bg-gradient-to-br from-emerald-950/40 to-amber-950/20 border border-emerald-800/40 rounded-2xl p-6 md:p-8 mb-12 shadow-2xl relative overflow-hidden">
-      {/* Decorative foliage shadows and music elements */}
-      <div className="absolute top-0 right-0 p-8 text-emerald-800/20 pointer-events-none">
-        <Music className="w-32 h-32 rotate-12" />
+    <div id="friendship-song-container" className="bg-gradient-to-br from-amber-50/95 via-yellow-50/90 to-emerald-50/95 border-2 border-emerald-300 rounded-3xl p-6 md:p-10 mb-12 shadow-xl relative overflow-hidden text-emerald-950">
+      {/* Playful Floating Musical Notes decoration (child-friendly vector aesthetics) */}
+      <div className="absolute top-4 right-8 text-emerald-800/15 pointer-events-none select-none text-right font-display text-2xl">
+        𝄞 ♩ ♫ ♬
+        <div className="text-sm mt-1 text-emerald-800/10">Key: C Major ♩ = 120</div>
       </div>
 
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10 border-b border-emerald-200/60 pb-6">
         <div>
-          <div className="inline-flex items-center gap-2 bg-amber-500/10 text-amber-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2 border border-amber-500/20">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Interactive Nursery Rhyme</span>
+          <div className="inline-flex items-center gap-2 bg-amber-200/50 text-amber-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2 border border-amber-300">
+            <Sparkles className="w-3.5 h-3.5 text-amber-600 animate-pulse" />
+            <span>Interactive Children's Musicbook</span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-white font-display">
-            🎵 "Hand in Paw" (The Friendship Song)
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-emerald-900 tracking-tight flex items-center gap-2">
+            <span>🎵 "Hand in Paw"</span>
+            <span className="text-lg font-normal text-emerald-700 font-sans italic hidden sm:inline">(A Song of Friendship)</span>
           </h2>
-          <p className="text-emerald-300/80 text-sm mt-1">
-            Press play to hear the sweet chime melody and sing along with Djugs & Mila!
+          <p className="text-emerald-800/80 text-sm mt-1 max-w-xl">
+            Press the play button to hear the magical, gentle chime melody and sing along following the bouncing words!
           </p>
         </div>
 
         <button
           onClick={isPlaying ? stopMusic : startSong}
-          className={`flex items-center gap-2 font-bold px-6 py-3 rounded-xl transition-all shadow-lg text-sm uppercase tracking-wider ${
+          className={`flex items-center gap-2 font-display font-semibold px-6 py-3.5 rounded-2xl transition-all shadow-md text-base tracking-wide ${
             isPlaying
-              ? 'bg-red-500 hover:bg-red-600 text-white hover:shadow-red-500/20'
-              : 'bg-amber-500 hover:bg-amber-600 text-emerald-950 hover:shadow-amber-500/20 hover:-translate-y-0.5'
+              ? 'bg-red-500 hover:bg-red-600 text-white hover:shadow-red-200'
+              : 'bg-amber-400 hover:bg-amber-500 text-emerald-950 hover:shadow-amber-200 hover:-translate-y-0.5 border-b-4 border-amber-600 active:border-b-0 active:translate-y-0.5'
           }`}
         >
           {isPlaying ? (
             <>
               <Square className="w-4 h-4 fill-current" />
-              <span>Stop Song</span>
+              <span>Stop Melody</span>
             </>
           ) : (
             <>
-              <Play className="w-4 h-4 fill-current" />
-              <span>Play Interactive Chime</span>
+              <Play className="w-4 h-4 fill-current animate-pulse" />
+              <span>Play Chimes</span>
             </>
           )}
         </button>
       </div>
 
+      {/* Decorative Musical Staff Line Placeholder */}
+      <div className="my-6 relative h-10 w-full flex items-center select-none pointer-events-none opacity-50 bg-repeat-x bg-[linear-gradient(to_bottom,#047857_1px,transparent_1px)] bg-[size:100%_4px] border-y border-emerald-700/30">
+        <span className="absolute left-4 font-display text-xl text-emerald-800 italic font-semibold">𝄞</span>
+        <span className="absolute left-1/4 font-display text-lg text-emerald-800">𝅘𝅥𝅯</span>
+        <span className="absolute left-1/2 font-display text-lg text-emerald-800">𝅘𝅥𝅮</span>
+        <span className="absolute left-3/4 font-display text-lg text-emerald-800">𝅘𝅥𝅯</span>
+        <span className="absolute right-12 font-display text-xl text-emerald-850">𝄾</span>
+        <span className="absolute right-4 font-display text-xl text-emerald-850">𝄇</span>
+      </div>
+
       {/* Interactive Song Sheets */}
-      <div className="mt-8 grid grid-cols-1 gap-4 max-w-2xl mx-auto">
+      <div className="mt-6 grid grid-cols-1 gap-4 max-w-2xl mx-auto">
         {SONG_LYRICS.map((line, lineIndex) => {
           const isActiveLine = lineIndex === currentLineIndex;
           
           return (
             <div
               key={line.id}
-              className={`flex items-center gap-4 p-4 rounded-xl transition-all duration-300 ${
+              className={`flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border ${
                 isActiveLine
-                  ? 'bg-emerald-900/60 border border-amber-500/40 shadow-inner'
-                  : 'bg-emerald-950/20 border border-transparent opacity-60'
+                  ? 'bg-white border-amber-300 shadow-md ring-4 ring-amber-200/50 scale-[1.02]'
+                  : 'bg-emerald-100/30 border-emerald-200/30 opacity-75'
               }`}
             >
-              <div className="text-2xl bg-emerald-950/50 p-2.5 rounded-full border border-emerald-800/30">
+              <div className="text-3xl bg-amber-100 p-2.5 rounded-2xl border border-amber-200/50 shadow-sm">
                 {line.icon}
               </div>
-              <div className="flex-1 flex flex-wrap gap-[0.35rem]">
+              <div className="flex-1 flex flex-wrap gap-x-1.5 gap-y-1">
                 {line.words.map((word, wordIndex) => {
                   const isActiveWord = isActiveLine && wordIndex === currentWordIndex;
                   return (
                     <span
                       key={wordIndex}
-                      className={`text-lg md:text-xl font-medium px-1 rounded transition-all duration-150 inline-block ${
+                      className={`text-xl md:text-2xl font-display font-medium px-1.5 py-0.5 rounded-lg transition-all duration-150 inline-block ${
                         isActiveWord
-                          ? 'text-amber-300 font-bold scale-110 drop-shadow-md bg-amber-500/10'
+                          ? 'text-amber-700 font-bold scale-110 drop-shadow-sm bg-gradient-to-r from-amber-200 to-yellow-100'
                           : isActiveLine
-                          ? 'text-emerald-100'
-                          : 'text-emerald-200/50'
+                          ? 'text-emerald-900'
+                          : 'text-emerald-850/60'
                       }`}
                     >
                       {word.text}
@@ -263,19 +275,21 @@ export const FriendshipSong: React.FC = () => {
                   );
                 })}
               </div>
-              {isActiveLine && (
+              {isActiveLine ? (
                 <div className="flex-shrink-0 animate-bounce">
-                  <Heart className="w-5 h-5 text-amber-400 fill-current" />
+                  <Heart className="w-6 h-6 text-red-500 fill-current" />
                 </div>
+              ) : (
+                <div className="text-emerald-800/20 text-xs font-mono font-bold">♪</div>
               )}
             </div>
           );
         })}
       </div>
       
-      <div className="mt-6 flex justify-center items-center gap-2 text-xs text-emerald-500/60 font-medium">
-        <Volume2 className="w-3.5 h-3.5" />
-        <span>Nursery synth uses clean triangle oscillators. Safe for little ears.</span>
+      <div className="mt-8 flex justify-center items-center gap-2 text-xs text-emerald-800/60 font-semibold bg-emerald-100/50 w-fit mx-auto px-4 py-2 rounded-full border border-emerald-200/50">
+        <Volume2 className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
+        <span>Synthesizer chimes are soft triangle waves. Safe for kids' environments.</span>
       </div>
     </div>
   );
