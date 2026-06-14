@@ -8,6 +8,7 @@ import {ErrorModal} from './components/ErrorModal';
 import {SavingProgressPage} from './components/SavingProgressPage';
 import {VideoGrid} from './components/VideoGrid';
 import {VideoPlayer} from './components/VideoPlayer';
+import {FriendshipSong} from './components/FriendshipSong';
 import {MOCK_VIDEOS} from './constants';
 import {Video} from './types';
 import {Trees, BookOpen, GraduationCap, Star} from 'lucide-react';
@@ -219,6 +220,7 @@ export const App: React.FC = () => {
           
           <main className="px-4 md:px-8 pb-16">
             <StoryOutline />
+            <FriendshipSong />
             
             <div className="flex items-center gap-2 mb-8">
               <div className="h-px flex-1 bg-emerald-800/30"></div>
