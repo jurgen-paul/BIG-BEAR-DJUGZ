@@ -1,0 +1,39 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions for input validation and security guards
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidProgress(data) {
+      return data.keys().hasAll(['userId']) &&
+             data.userId is string &&
+             data.userId.size() > 0 &&
+             data.userId.size() <= 128 &&
+             (!('earnedBadges' in data) || (data.earnedBadges is list && data.earnedBadges.size() <= 50)) &&
+             (!('lastUpdated' in data) || (data.lastUpdated is string && data.lastUpdated.size() <= 64));
+    }
+
+    // Health check and connection validation path
+    match /test/{docId} {
+      allow read, write: if isValidId(docId);
+    }
+
+    // User learning progress & badge records
+    match /progress/{userId} {
+      allow get: if isValidId(userId);
+      allow list: if true;
+      allow create: if isValidId(userId) && isValidProgress(request.resource.data) && request.resource.data.userId == userId;
+      allow update: if isValidId(userId) && isValidProgress(request.resource.data) && request.resource.data.userId == userId;
+      allow delete: if isValidId(userId);
+    }
+
+    // Default deny for all other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

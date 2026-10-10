@@ -10,6 +10,12 @@ import {VideoGrid} from './components/VideoGrid';
 import {VideoPlayer} from './components/VideoPlayer';
 import {FriendshipSong} from './components/FriendshipSong';
 import {EducationalQuiz} from './components/EducationalQuiz';
+import {KidsCourses} from './components/KidsCourses';
+import {ForestJournal} from './components/ForestJournal';
+import {BadgeGallery} from './components/BadgeGallery';
+import {TranslationBar} from './components/TranslationBar';
+import {TranslationSettingsModal} from './components/TranslationSettingsModal';
+import {LanguageProvider, useTranslation} from './context/LanguageContext';
 import {MOCK_VIDEOS} from './constants';
 import {Video} from './types';
 import {Trees, BookOpen, GraduationCap, Star} from 'lucide-react';
@@ -83,35 +89,48 @@ async function generateVideoFromText(
  * Story Outline Component
  */
 const StoryOutline: React.FC = () => {
+  const {t, settings} = useTranslation();
+
   return (
     <div className="bg-emerald-900/40 border border-emerald-800/50 rounded-2xl p-6 mb-12 backdrop-blur-sm shadow-xl">
       <div className="flex items-center gap-3 mb-6">
-        <BookOpen className="w-8 h-8 text-amber-400" />
-        <h2 className="text-2xl font-bold text-white">Big Bear Djugs: The Friendly Bear Learns & Teaches</h2>
+        <BookOpen className="w-8 h-8 text-amber-400 shrink-0" />
+        <div>
+          <h2 className="text-2xl font-bold text-white">{t('storyOutlineTitle')}</h2>
+          {settings.bilingualMode && settings.language !== 'en' && (
+            <p className="text-xs text-amber-300/80 font-semibold mt-0.5">
+              🇺🇸 English: Big Bear Djugs: The Friendly Bear Learns & Teaches
+            </p>
+          )}
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-emerald-100/80">
         <div>
           <h3 className="text-amber-400 font-semibold mb-2 flex items-center gap-2">
-            <Star className="w-4 h-4" /> The Mission
+            <Star className="w-4 h-4" /> {t('theMissionTitle')}
           </h3>
-          <p>
-            Join Big Bear Djugs, a gentle grizzly with a huge heart and even bigger curiosity. 
-            When he discovers the magic of learning, he realizes that knowledge is meant to be shared!
-          </p>
+          <p>{t('theMissionDesc')}</p>
+          {settings.bilingualMode && settings.language !== 'en' && (
+            <p className="text-xs text-emerald-300/60 italic mt-2 border-t border-emerald-800/30 pt-1.5">
+              🇺🇸 En: Join Big Bear Djugs, a gentle grizzly with a huge heart and even bigger curiosity. When he discovers the magic of learning, he realizes that knowledge is meant to be shared!
+            </p>
+          )}
         </div>
         <div>
           <h3 className="text-amber-400 font-semibold mb-2 flex items-center gap-2">
-            <GraduationCap className="w-4 h-4" /> Educational Adventure
+            <GraduationCap className="w-4 h-4" /> {t('educationalAdventureTitle')}
           </h3>
-          <p>
-            From counting berries in the meadow to reading maps by the river and exploring science in the lab, 
-            every scene is a lesson in teamwork, kindness, and bravery.
-          </p>
+          <p>{t('educationalAdventureDesc')}</p>
+          {settings.bilingualMode && settings.language !== 'en' && (
+            <p className="text-xs text-emerald-300/60 italic mt-2 border-t border-emerald-800/30 pt-1.5">
+              🇺🇸 En: From counting berries in the meadow to reading maps by the river and exploring science in the lab, every scene is a lesson in teamwork, kindness, and bravery.
+            </p>
+          )}
         </div>
       </div>
       <div className="mt-8 pt-6 border-t border-emerald-800/30">
         <p className="text-center font-medium text-amber-400 animate-pulse italic">
-          "Learning is fun. Everyone can teach something. Be curious every day."
+          {t('forestMotto')}
         </p>
       </div>
     </div>
@@ -119,9 +138,10 @@ const StoryOutline: React.FC = () => {
 };
 
 /**
- * Main component for the Big Bear Djugs Interactive Adventure.
+ * Main application content with translation hooks
  */
-export const App: React.FC = () => {
+const AppContent: React.FC = () => {
+  const {t, settings} = useTranslation();
   const [videos, setVideos] = useState<Video[]>(MOCK_VIDEOS);
   const [playingVideo, setPlayingVideo] = useState<Video | null>(null);
   const [editingVideo, setEditingVideo] = useState<Video | null>(null);
@@ -191,6 +211,12 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0d1a0d] text-emerald-50 font-sans">
+      {/* Top Translation & Quick Language Switcher Bar */}
+      <TranslationBar />
+
+      {/* Translation Settings Modal */}
+      <TranslationSettingsModal />
+
       {editingVideo ? (
         <EditVideoPage
           video={editingVideo}
@@ -204,18 +230,23 @@ export const App: React.FC = () => {
               <Trees className="w-12 h-12 text-amber-500" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold font-display bg-gradient-to-r from-emerald-400 via-amber-200 to-emerald-400 text-transparent bg-clip-text mb-4 drop-shadow-sm">
-              Big Bear Djugs
+              {t('appTitle')}
             </h1>
             <p className="text-emerald-300/80 mt-2 text-xl max-w-2xl mx-auto font-medium">
-              Interactive Educational Adventure
+              {t('appSubtitle')}
             </p>
-            <div className="mt-4 flex justify-center gap-4">
+            <div className="mt-4 flex flex-wrap justify-center gap-3">
               <span className="px-3 py-1 bg-emerald-900/60 rounded-full text-xs font-bold text-amber-400 uppercase tracking-widest border border-emerald-800/50">
-                Learning Adventure
+                {t('badgeLearningAdventure')}
               </span>
               <span className="px-3 py-1 bg-emerald-900/60 rounded-full text-xs font-bold text-amber-400 uppercase tracking-widest border border-emerald-800/50">
-                Ages 5-10
+                {t('badgeAges')}
               </span>
+              {settings.bilingualMode && (
+                <span className="px-3 py-1 bg-amber-500/20 rounded-full text-xs font-bold text-amber-300 uppercase tracking-widest border border-amber-500/40">
+                  🌐 {t('bilingualBadge')}
+                </span>
+              )}
             </div>
           </header>
           
@@ -223,10 +254,15 @@ export const App: React.FC = () => {
             <StoryOutline />
             <FriendshipSong />
             <EducationalQuiz />
+            <KidsCourses />
+            <BadgeGallery />
+            <ForestJournal />
             
             <div className="flex items-center gap-2 mb-8">
               <div className="h-px flex-1 bg-emerald-800/30"></div>
-              <h2 className="text-lg font-bold text-emerald-400 uppercase tracking-tighter">Explore the Scenes</h2>
+              <h2 className="text-lg font-bold text-emerald-400 uppercase tracking-tighter">
+                {t('exploreScenesTitle')}
+              </h2>
               <div className="h-px flex-1 bg-emerald-800/30"></div>
             </div>
 
@@ -257,5 +293,16 @@ export const App: React.FC = () => {
         />
       )}
     </div>
+  );
+};
+
+/**
+ * Root Application wrapped in LanguageProvider
+ */
+export const App: React.FC = () => {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 };

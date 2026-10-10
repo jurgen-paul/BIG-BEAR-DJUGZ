@@ -1,0 +1,33 @@
+{
+  "entities": {
+    "Progress": {
+      "title": "Progress",
+      "type": "object",
+      "description": "User learning progress and badges",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "earnedBadges": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "userId"
+      ]
+    }
+  },
+  "firestore": {
+    "/progress/{userId}": {
+      "entity": "Progress",
+      "description": "User progress records"
+    }
+  }
+}

@@ -5,6 +5,7 @@
 import React from 'react';
 import {Video} from '../types';
 import {Play} from 'lucide-react';
+import {useTranslation} from '../context/LanguageContext';
 
 interface VideoCardProps {
   video: Video;
@@ -15,12 +16,15 @@ interface VideoCardProps {
  * A component that renders a video card with a thumbnail, title, and play button.
  */
 export const VideoCard: React.FC<VideoCardProps> = ({video, onPlay}) => {
+  const {tScene, settings, t} = useTranslation();
+  const localized = tScene(video.id, video.title, video.description);
+
   return (
     <button
       type="button"
       className="group w-full text-left bg-emerald-900/40 border border-emerald-800/30 rounded-xl overflow-hidden shadow-lg hover:shadow-emerald-900/50 transform transition-all duration-300 hover:-translate-y-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1a0d]"
       onClick={() => onPlay(video)}
-      aria-label={`Play video: ${video.title}`}>
+      aria-label={`Play video: ${localized.title}`}>
       <div className="relative">
         <video
           className="w-full h-48 object-cover pointer-events-none"
@@ -40,10 +44,17 @@ export const VideoCard: React.FC<VideoCardProps> = ({video, onPlay}) => {
       <div className="p-5">
         <h3
           className="text-lg font-bold text-emerald-50 truncate"
-          title={video.title}>
-          {video.title}
+          title={localized.title}>
+          {localized.title}
         </h3>
-        <p className="text-emerald-400 text-xs mt-1 uppercase tracking-wider font-semibold">Educational Scene</p>
+        {settings.bilingualMode && settings.language !== 'en' && (
+          <p className="text-[11px] text-amber-300/80 truncate mt-0.5" title={video.title}>
+            🇺🇸 {video.title}
+          </p>
+        )}
+        <p className="text-emerald-400 text-xs mt-1 uppercase tracking-wider font-semibold">
+          {t('educationalSceneTag')}
+        </p>
       </div>
     </button>
   );

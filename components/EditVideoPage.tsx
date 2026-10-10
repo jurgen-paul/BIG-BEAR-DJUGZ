@@ -4,7 +4,8 @@
 */
 import React, {useState} from 'react';
 import {Video} from '../types';
-import {Sparkles, ArrowLeft} from 'lucide-react';
+import {Sparkles, ArrowLeft, Globe} from 'lucide-react';
+import {useTranslation} from '../context/LanguageContext';
 
 interface EditVideoPageProps {
   video: Video;
@@ -21,6 +22,8 @@ export const EditVideoPage: React.FC<EditVideoPageProps> = ({
   onSave,
   onCancel,
 }) => {
+  const {tScene, t, settings, currentLangInfo} = useTranslation();
+  const localized = tScene(video.id, video.title, video.description);
   const [description, setDescription] = useState(video.description);
 
   const handleSave = () => {
@@ -36,32 +39,53 @@ export const EditVideoPage: React.FC<EditVideoPageProps> = ({
             className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors mb-4 group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-sm font-bold uppercase tracking-wider">Back to Scenes</span>
+            <span className="text-sm font-bold uppercase tracking-wider">{t('backToScenesBtn')}</span>
           </button>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 font-display">
-            Remix this Scene
-          </h1>
-          <p className="text-emerald-300/70">Modify the story prompt to create your own unique version of this educational moment.</p>
+          <div className="flex items-center justify-between flex-wrap gap-2">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 font-display">
+              {t('remixPageTitle')}
+            </h1>
+            <span className="px-3 py-1 rounded-full bg-emerald-800/50 border border-emerald-700/50 text-xs font-semibold text-amber-300 flex items-center gap-1.5">
+              <Globe className="w-3.5 h-3.5" /> {currentLangInfo.nativeName} ({currentLangInfo.flag})
+            </span>
+          </div>
+          <p className="text-emerald-300/70">{t('remixPageDesc')}</p>
         </header>
 
         <main>
           <div className="mb-8 p-4 bg-emerald-950/50 rounded-xl border border-emerald-800/30">
-            <h3 className="text-amber-400 font-bold text-sm uppercase tracking-widest mb-3">Original Scene Preview</h3>
+            <h3 className="text-amber-400 font-bold text-sm uppercase tracking-widest mb-3">
+              {t('originalScenePreview')}
+            </h3>
             <div className="flex gap-4">
               <video className="w-32 h-20 object-cover rounded-lg shadow-lg border border-emerald-800/50" src={video.videoUrl} muted />
               <div className="flex-1">
-                <p className="text-sm text-emerald-100/90 font-medium line-clamp-2">{video.title}</p>
-                <p className="text-xs text-emerald-400 mt-1 italic">"Use your imagination to change the forest's destiny!"</p>
+                <p className="text-sm text-emerald-100/90 font-medium line-clamp-2">
+                  {localized.title}
+                </p>
+                {settings.language !== 'en' && (
+                  <p className="text-xs text-amber-300/70 mt-0.5 italic">
+                    🇺🇸 {video.title}
+                  </p>
+                )}
+                <p className="text-xs text-emerald-400 mt-1 italic">{t('destinyQuote')}</p>
               </div>
             </div>
           </div>
 
           <div className="mb-8">
-            <label
-              htmlFor="description"
-              className="block text-sm font-bold text-emerald-300 uppercase tracking-widest mb-3">
-              Your Story Prompt
-            </label>
+            <div className="flex items-center justify-between mb-3">
+              <label
+                htmlFor="description"
+                className="block text-sm font-bold text-emerald-300 uppercase tracking-widest">
+                {t('promptLabel')}
+              </label>
+              {settings.autoTranslateAiPrompts && settings.language !== 'en' && (
+                <span className="text-xs text-amber-300/90 flex items-center gap-1 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/30">
+                  <Sparkles className="w-3 h-3" /> Auto-translated for Veo 3
+                </span>
+              )}
+            </div>
             <textarea
               id="description"
               rows={8}
@@ -78,13 +102,13 @@ export const EditVideoPage: React.FC<EditVideoPageProps> = ({
           <button
             onClick={onCancel}
             className="px-8 py-3 rounded-xl bg-emerald-800/30 hover:bg-emerald-800/50 text-emerald-100 font-bold transition-all border border-emerald-800/50">
-            Keep Original
+            {t('closeBtn')}
           </button>
           <button
             onClick={handleSave}
             className="px-8 py-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-emerald-950 font-bold transition-all shadow-lg hover:shadow-amber-500/20 flex items-center justify-center gap-2">
             <Sparkles className="w-5 h-5" />
-            Generate Scene
+            {t('generateVideoBtn')}
           </button>
         </footer>
       </div>
