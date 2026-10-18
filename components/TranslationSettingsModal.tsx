@@ -3,6 +3,7 @@ import {
   X, 
   Globe, 
   Volume2, 
+  VolumeX,
   Check, 
   RotateCcw, 
   Sparkles, 
@@ -10,10 +11,15 @@ import {
   Type, 
   Languages, 
   MessageSquare,
-  Square
+  Square,
+  Trees,
+  Play,
+  Pause
 } from 'lucide-react';
 import { useTranslation } from '../context/LanguageContext';
+import { useAmbientAudio } from '../context/AmbientAudioContext';
 import { SUPPORTED_LANGUAGES, SupportedLanguage } from '../lib/translations';
+import { AmbientPreset, PRESET_CONFIGS } from '../lib/ambientForestAudio';
 
 export const TranslationSettingsModal: React.FC = () => {
   const {
@@ -29,6 +35,15 @@ export const TranslationSettingsModal: React.FC = () => {
     stopSpeaking,
     isSpeaking
   } = useTranslation();
+
+  const {
+    isPlaying: isAmbientPlaying,
+    volume: ambientVolume,
+    preset: ambientPreset,
+    togglePlay: toggleAmbientPlay,
+    setVolume: setAmbientVolume,
+    setPreset: setAmbientPreset,
+  } = useAmbientAudio();
 
   const [activeTab, setActiveTab] = useState<'language' | 'bilingual' | 'voice' | 'display' | 'ai'>('language');
   const [showSavedNotification, setShowSavedNotification] = useState(false);
@@ -397,6 +412,76 @@ export const TranslationSettingsModal: React.FC = () => {
                 >
                   <Volume2 className="w-4 h-4" />
                 </button>
+              </div>
+
+              {/* Ambient Forest Nature Audio Settings Section */}
+              <div className="pt-4 border-t border-emerald-800/40 space-y-3">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                      <Trees className="w-4 h-4 text-amber-400" />
+                      {t('ambientForestAudioTitle')}
+                    </h4>
+                    <p className="text-xs text-emerald-300/70 mt-0.5">
+                      {t('ambientForestAudioSubtitle')}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => toggleAmbientPlay()}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow ${
+                      isAmbientPlaying
+                        ? 'bg-emerald-600 text-white shadow-emerald-900/50'
+                        : 'bg-amber-500 hover:bg-amber-400 text-emerald-950'
+                    }`}
+                  >
+                    {isAmbientPlaying ? <Pause className="w-3.5 h-3.5 fill-current" /> : <Play className="w-3.5 h-3.5 fill-current" />}
+                    <span>{isAmbientPlaying ? 'Pause Ambient' : 'Play Forest Sound'}</span>
+                  </button>
+                </div>
+
+                {/* Preset choices in modal */}
+                <div className="grid grid-cols-2 gap-2 pt-1">
+                  {(['pines', 'birds', 'brook', 'twilight'] as AmbientPreset[]).map((pKey) => {
+                    const cfg = PRESET_CONFIGS[pKey];
+                    const isSelected = ambientPreset === pKey;
+                    return (
+                      <button
+                        key={pKey}
+                        onClick={() => {
+                          setAmbientPreset(pKey);
+                          triggerSavedFeedback();
+                        }}
+                        className={`p-2.5 rounded-xl border text-left transition-all ${
+                          isSelected
+                            ? 'bg-amber-500/20 border-amber-400/80 text-amber-200 ring-1 ring-amber-400/50'
+                            : 'bg-emerald-950/40 border-emerald-800/30 text-emerald-200/80 hover:bg-emerald-900/40'
+                        }`}
+                      >
+                        <div className="flex items-center gap-1.5 text-xs font-bold">
+                          <span>{cfg.icon}</span>
+                          <span className="truncate">{cfg.name}</span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Volume slider in modal */}
+                <div className="bg-emerald-950/40 border border-emerald-800/30 rounded-xl p-3">
+                  <div className="flex items-center justify-between text-xs mb-1 text-emerald-300">
+                    <span>{t('ambientMasterVolume')}</span>
+                    <span className="text-amber-400 font-mono font-bold">{Math.round(ambientVolume * 100)}%</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.02"
+                    value={ambientVolume}
+                    onChange={(e) => setAmbientVolume(parseFloat(e.target.value))}
+                    className="w-full h-1.5 bg-emerald-900 rounded-lg appearance-none cursor-pointer accent-amber-400"
+                  />
+                </div>
               </div>
             </div>
           )}

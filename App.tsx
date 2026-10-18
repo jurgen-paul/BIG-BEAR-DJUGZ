@@ -15,7 +15,9 @@ import {ForestJournal} from './components/ForestJournal';
 import {BadgeGallery} from './components/BadgeGallery';
 import {TranslationBar} from './components/TranslationBar';
 import {TranslationSettingsModal} from './components/TranslationSettingsModal';
+import {AmbientForestAudio} from './components/AmbientForestAudio';
 import {LanguageProvider, useTranslation} from './context/LanguageContext';
+import {AmbientAudioProvider} from './context/AmbientAudioContext';
 import {MOCK_VIDEOS} from './constants';
 import {Video} from './types';
 import {Trees, BookOpen, GraduationCap, Star} from 'lucide-react';
@@ -292,17 +294,22 @@ const AppContent: React.FC = () => {
           onSelectKey={async () => await window.aistudio?.openSelectKey()}
         />
       )}
+
+      {/* Background Ambient Forest Audio Controller */}
+      <AmbientForestAudio />
     </div>
   );
 };
 
 /**
- * Root Application wrapped in LanguageProvider
+ * Root Application wrapped in LanguageProvider and AmbientAudioProvider
  */
 export const App: React.FC = () => {
   return (
     <LanguageProvider>
-      <AppContent />
+      <AmbientAudioProvider>
+        <AppContent />
+      </AmbientAudioProvider>
     </LanguageProvider>
   );
 };

@@ -7,9 +7,13 @@ import {
   ChevronDown, 
   Check, 
   Sparkles,
-  Square
+  Square,
+  Trees,
+  Play,
+  Pause
 } from 'lucide-react';
 import { useTranslation } from '../context/LanguageContext';
+import { useAmbientAudio } from '../context/AmbientAudioContext';
 import { SUPPORTED_LANGUAGES, SupportedLanguage } from '../lib/translations';
 
 export const TranslationBar: React.FC = () => {
@@ -23,6 +27,18 @@ export const TranslationBar: React.FC = () => {
     stopSpeaking,
     isSpeaking
   } = useTranslation();
+
+  const {
+    isPlaying: isAmbientPlaying,
+    togglePlay: toggleAmbientPlay,
+    duckAudio,
+    setIsWidgetOpen: setIsAmbientWidgetOpen
+  } = useAmbientAudio();
+
+  // Duck ambient background audio when Djugs voice greeting is speaking
+  useEffect(() => {
+    duckAudio(isSpeaking);
+  }, [isSpeaking, duckAudio]);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -129,8 +145,31 @@ export const TranslationBar: React.FC = () => {
           </div>
         </div>
 
-        {/* Right side: Bilingual Toggle & Settings Button & Voice greeting */}
+        {/* Right side: Bilingual Toggle & Settings Button & Voice greeting & Nature Audio */}
         <div className="flex items-center gap-2">
+          {/* Ambient Nature Sound Toggle */}
+          <button
+            onClick={() => toggleAmbientPlay()}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold transition-all border ${
+              isAmbientPlaying
+                ? 'bg-emerald-600/30 text-emerald-200 border-emerald-500/60 shadow-sm ring-1 ring-emerald-400/40'
+                : 'bg-emerald-950/60 text-emerald-300/80 border-emerald-800/40 hover:bg-emerald-900/40 hover:text-white'
+            }`}
+            title={isAmbientPlaying ? t('ambientForestSoundOn') : t('ambientForestSoundOff')}
+          >
+            <Trees className={`w-3.5 h-3.5 ${isAmbientPlaying ? 'text-amber-400 animate-pulse' : 'text-emerald-400'}`} />
+            <span className="hidden sm:inline">{t('ambientForestAudioBtn')}</span>
+            {isAmbientPlaying ? (
+              <span className="flex items-center gap-0.5 ml-0.5">
+                <span className="w-0.5 h-2.5 bg-amber-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                <span className="w-0.5 h-3.5 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                <span className="w-0.5 h-2 bg-amber-300 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+              </span>
+            ) : (
+              <Play className="w-2.5 h-2.5 fill-current ml-0.5 text-amber-400" />
+            )}
+          </button>
+
           {/* Audio greeting preview button */}
           <button
             onClick={handleToggleVoice}

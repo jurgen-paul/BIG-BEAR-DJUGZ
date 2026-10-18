@@ -50,6 +50,7 @@ Explore the five signature storybook scenes from Big Bear Djugs' educational cur
 
 ## 🌟 Core Features
 
+- 🌲 **Gentle Ambient Forest Nature Sounds**: Zero-dependency procedural Web Audio soundscape synthesizing whispering pines, singing woodland warblers, a babbling forest stream, and starry twilight crickets, complete with real-time waveform visualizer, volume mixing, and quick toggle.
 - 🌍 **Multilingual Localization (8 Languages)**: Instant translation across English 🇺🇸, Spanish 🇪🇸, French 🇫🇷, German 🇩🇪, Japanese 🇯🇵, Chinese 🇨🇳, Portuguese 🇧🇷, and Italian 🇮🇹.
 - 📖 **Bilingual Learning Subtitles**: Enables dual-language display so children can learn second languages organically alongside original English text.
 - 🗣️ **Voice Narration (Text-to-Speech)**: Integrated Web Speech engine reads story scenes aloud with configurable speech rate and pitch.

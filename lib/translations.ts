@@ -174,6 +174,24 @@ export interface Translations {
   closeSettingsBtn: string;
   settingsSavedNotice: string;
 
+  // Background Ambient Nature Audio
+  ambientForestAudioBtn: string;
+  ambientForestAudioTitle: string;
+  ambientForestAudioSubtitle: string;
+  ambientForestSoundOn: string;
+  ambientForestSoundOff: string;
+  ambientMasterVolume: string;
+  ambientSoundscapePresets: string;
+  presetWhisperingPines: string;
+  presetSongbirds: string;
+  presetBabblingBrook: string;
+  presetTwilightCrickets: string;
+  ambientLayerBreeze: string;
+  ambientLayerBirds: string;
+  ambientLayerBrook: string;
+  ambientLayerCrickets: string;
+  ambientAudioHelpText: string;
+
   // Scene Translations
   scenes: {
     [sceneId: string]: SceneTranslation;
@@ -257,6 +275,24 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     resetDefaultsBtn: "Reset to Defaults",
     closeSettingsBtn: "Save & Apply Settings",
     settingsSavedNotice: "Settings saved to explorer profile!",
+
+    // Background Ambient Nature Audio
+    ambientForestAudioBtn: "Forest Sounds",
+    ambientForestAudioTitle: "Gentle Forest Nature Sounds",
+    ambientForestAudioSubtitle: "Immersive procedural ambient audio featuring whispering pines, woodland songbirds, and babbling brooks",
+    ambientForestSoundOn: "Ambient Sound Active",
+    ambientForestSoundOff: "Ambient Sound Paused",
+    ambientMasterVolume: "Master Volume",
+    ambientSoundscapePresets: "Nature Soundscapes",
+    presetWhisperingPines: "Whispering Pines",
+    presetSongbirds: "Songbird Meadow",
+    presetBabblingBrook: "Babbling Brook",
+    presetTwilightCrickets: "Twilight Crickets",
+    ambientLayerBreeze: "Pine Breeze",
+    ambientLayerBirds: "Songbirds",
+    ambientLayerBrook: "River Brook",
+    ambientLayerCrickets: "Crickets",
+    ambientAudioHelpText: "Procedural nature sounds synthesized live in your browser to enhance Big Bear Djugs' learning journey.",
 
     scenes: {
       '1': {
@@ -371,6 +407,24 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     closeSettingsBtn: "Guardar y Aplicar Ajustes",
     settingsSavedNotice: "¡Ajustes guardados en el perfil de explorador!",
 
+    // Background Ambient Nature Audio
+    ambientForestAudioBtn: "Sonidos del Bosque",
+    ambientForestAudioTitle: "Sonidos Relajantes de la Naturaleza",
+    ambientForestAudioSubtitle: "Audio ambiental inmersivo con el susurro de los pinos, pájaros cantores y arroyos cristalinos",
+    ambientForestSoundOn: "Sonido Ambiental Activo",
+    ambientForestSoundOff: "Sonido Ambiental Pausado",
+    ambientMasterVolume: "Volumen Principal",
+    ambientSoundscapePresets: "Paisajes Sonoros",
+    presetWhisperingPines: "Susurro de Pinos",
+    presetSongbirds: "Prado de Aves",
+    presetBabblingBrook: "Arroyo Cristalino",
+    presetTwilightCrickets: "Grillos al Atardecer",
+    ambientLayerBreeze: "Brisa de Pinos",
+    ambientLayerBirds: "Pájaros Cantores",
+    ambientLayerBrook: "Arroyo del Río",
+    ambientLayerCrickets: "Grillos",
+    ambientAudioHelpText: "Sonidos de la naturaleza sintetizados en tiempo real para una inmersión mágica con el Gran Oso Djugs.",
+
     scenes: {
       '1': {
         title: "Escena 1: El Misterioso Libro Brillante",
@@ -483,6 +537,24 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     resetDefaultsBtn: "Réinitialiser",
     closeSettingsBtn: "Enregistrer & Appliquer",
     settingsSavedNotice: "Paramètres enregistrés dans votre profil !",
+
+    // Background Ambient Nature Audio
+    ambientForestAudioBtn: "Sons de la Forêt",
+    ambientForestAudioTitle: "Sons Paisibles de la Nature",
+    ambientForestAudioSubtitle: "Ambiance sonore immersive avec le murmure des pins, les oiseaux chanteurs et le ruisseau scintillant",
+    ambientForestSoundOn: "Son Ambiant Actif",
+    ambientForestSoundOff: "Son Ambiant en Pause",
+    ambientMasterVolume: "Volume Général",
+    ambientSoundscapePresets: "Paysages Sonores",
+    presetWhisperingPines: "Murmure des Pins",
+    presetSongbirds: "Clairière aux Oiseaux",
+    presetBabblingBrook: "Ruisseau Chantant",
+    presetTwilightCrickets: "Grillons du Crépuscule",
+    ambientLayerBreeze: "Brise des Pins",
+    ambientLayerBirds: "Oiseaux Chanteurs",
+    ambientLayerBrook: "Ruisseau",
+    ambientLayerCrickets: "Grillons",
+    ambientAudioHelpText: "Sons naturels générés en direct pour accompagner les aventures de Grand Ours Djugs.",
 
     scenes: {
       '1': {
@@ -597,6 +669,24 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     closeSettingsBtn: "Speichern & Anwenden",
     settingsSavedNotice: "Einstellungen im Entdecker-Profil gesichert!",
 
+    // Background Ambient Nature Audio
+    ambientForestAudioBtn: "Waldgeräusche",
+    ambientForestAudioTitle: "Sanfte Wald-Naturgeräusche",
+    ambientForestAudioSubtitle: "Immersives Natur-Audio mit rauschenden Kiefern, Waldvögeln und plätscherndem Bach",
+    ambientForestSoundOn: "Waldsound Aktiv",
+    ambientForestSoundOff: "Waldsound Pausiert",
+    ambientMasterVolume: "Gesamtlautstärke",
+    ambientSoundscapePresets: "Klanglandschaften",
+    presetWhisperingPines: "Rauschende Kiefern",
+    presetSongbirds: "Singvogelwiese",
+    presetBabblingBrook: "Plätschernder Bach",
+    presetTwilightCrickets: "Abendgrillen",
+    ambientLayerBreeze: "Kiefernbrise",
+    ambientLayerBirds: "Singvögel",
+    ambientLayerBrook: "Waldbach",
+    ambientLayerCrickets: "Grillen",
+    ambientAudioHelpText: "Echtzeit-generierte Naturklänge für eine entspannte Lernreise mit Bär Djugs.",
+
     scenes: {
       '1': {
         title: "Szene 1: Das geheimnisvolle leuchtende Buch",
@@ -709,6 +799,24 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     resetDefaultsBtn: "初期設定にもどす",
     closeSettingsBtn: "保存して適用する",
     settingsSavedNotice: "たんけんたいプロフィールに設定を保存しました！",
+
+    // Background Ambient Nature Audio
+    ambientForestAudioBtn: "森の環境音",
+    ambientForestAudioTitle: "森のやさしい自然サウンド",
+    ambientForestAudioSubtitle: "松林を吹き抜ける風、鳥のさえずり、せせらぎが織りなす没入感のある自然音",
+    ambientForestSoundOn: "環境音 再生中",
+    ambientForestSoundOff: "環境音 一時停止",
+    ambientMasterVolume: "マスター音量",
+    ambientSoundscapePresets: "サウンドスケープ",
+    presetWhisperingPines: "ささやく松林",
+    presetSongbirds: "小鳥の草原",
+    presetBabblingBrook: "清らかな小川",
+    presetTwilightCrickets: "夕暮れのスズムシ",
+    ambientLayerBreeze: "そよ風",
+    ambientLayerBirds: "野鳥",
+    ambientLayerBrook: "小川のせせらぎ",
+    ambientLayerCrickets: "スズムシ",
+    ambientAudioHelpText: "大熊ジュグスと一緒に森を探検できる、ブラウザ上でリアルタイム合成される自然の音です。",
 
     scenes: {
       '1': {
@@ -823,6 +931,24 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     closeSettingsBtn: "保存并应用设置",
     settingsSavedNotice: "设置已成功保存至您的探险家档案！",
 
+    // Background Ambient Nature Audio
+    ambientForestAudioBtn: "森林自然音",
+    ambientForestAudioTitle: "温柔的森林大自然声音",
+    ambientForestAudioSubtitle: "身临其境的自然音景：松林微风、林间鸟鸣和清澈溪流",
+    ambientForestSoundOn: "环境音 播放中",
+    ambientForestSoundOff: "环境音 已暂停",
+    ambientMasterVolume: "主音量",
+    ambientSoundscapePresets: "自然音景",
+    presetWhisperingPines: "松林微风",
+    presetSongbirds: "鸣鸟花田",
+    presetBabblingBrook: "潺潺溪流",
+    presetTwilightCrickets: "暮色蟋蟀",
+    ambientLayerBreeze: "林间微风",
+    ambientLayerBirds: "林间鸣鸟",
+    ambientLayerBrook: "清澈溪流",
+    ambientLayerCrickets: "夏夜蟋蟀",
+    ambientAudioHelpText: "浏览器实时合成的自然环境音，带你和大熊朱格斯身临其境畅游森林。",
+
     scenes: {
       '1': {
         title: "第1幕：神秘的发光天书",
@@ -936,6 +1062,24 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     closeSettingsBtn: "Salvar & Aplicar",
     settingsSavedNotice: "Configurações salvas no perfil de explorador!",
 
+    // Background Ambient Nature Audio
+    ambientForestAudioBtn: "Sons da Floresta",
+    ambientForestAudioTitle: "Sons Suaves da Natureza",
+    ambientForestAudioSubtitle: "Áudio ambiente imersivo com brisa nos pinheiros, canto dos pássaros e riachos cristalinos",
+    ambientForestSoundOn: "Som Ambiente Ativo",
+    ambientForestSoundOff: "Som Ambiente Pausado",
+    ambientMasterVolume: "Volume Principal",
+    ambientSoundscapePresets: "Paisagens Sonoras",
+    presetWhisperingPines: "Sussurro dos Pinheiros",
+    presetSongbirds: "Prado dos Pássaros",
+    presetBabblingBrook: "Riacho Cristalino",
+    presetTwilightCrickets: "Grilos ao Entardecer",
+    ambientLayerBreeze: "Brisa dos Pinheiros",
+    ambientLayerBirds: "Pássaros Cantores",
+    ambientLayerBrook: "Riacho",
+    ambientLayerCrickets: "Grilos",
+    ambientAudioHelpText: "Sons da natureza sintetizados em tempo real para acompanhar a aventura com o Grande Urso Djugs.",
+
     scenes: {
       '1': {
         title: "Cena 1: O Misterioso Livro Brilhante",
@@ -1048,6 +1192,24 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     resetDefaultsBtn: "Ripristina Predefiniti",
     closeSettingsBtn: "Salva & Applica",
     settingsSavedNotice: "Impostazioni salvate nel profilo esploratore!",
+
+    // Background Ambient Nature Audio
+    ambientForestAudioBtn: "Suoni del Bosco",
+    ambientForestAudioTitle: "Dolci Suoni della Natura",
+    ambientForestAudioSubtitle: "Audio ambientale immersivo con il fruscio dei pini, cinguettio di uccellini e ruscelli limpidi",
+    ambientForestSoundOn: "Suoni Ambientali Attivi",
+    ambientForestSoundOff: "Suoni Ambientali in Pausa",
+    ambientMasterVolume: "Volume Principale",
+    ambientSoundscapePresets: "Paesaggi Sonori",
+    presetWhisperingPines: "Fruscio dei Pini",
+    presetSongbirds: "Prato degli Uccellini",
+    presetBabblingBrook: "Ruscello Mormorante",
+    presetTwilightCrickets: "Grilli al Crepuscolo",
+    ambientLayerBreeze: "Brezza tra i Pini",
+    ambientLayerBirds: "Uccellini",
+    ambientLayerBrook: "Ruscello",
+    ambientLayerCrickets: "Grilli",
+    ambientAudioHelpText: "Suoni naturali sintetizzati in tempo reale per immergersi nelle avventure di Grande Orso Djugs.",
 
     scenes: {
       '1': {
